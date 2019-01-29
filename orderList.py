@@ -17,6 +17,7 @@ def bubbleSort(unsorted):
 
 #Get list of numbers from user
 numString = input("Please enter the list, delimited by your cli argument: ")
+numString = numString.strip("[]")
 array = []
 
 #Split the list at the comma and add it to a python list
