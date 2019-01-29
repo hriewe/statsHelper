@@ -37,7 +37,7 @@ else:
 bubbleSort(array)
 
 #Print the sorted list to the user on a single line
-print("\nSorted List: ")
+print("\nSorted List: ", end=' ')
 for i in range (len(array)):
   print(array[i], end=' ')
 
@@ -71,10 +71,11 @@ for key, value in modeDict.items():
   if value > mode:
     mode = key
     modeOccur = value
+
 if valuesGreaterThanOne == 0:
   print("There is no mode")
-
-for key, value in modeDict.items():
-  if value == modeOccur:
-    modeS = modeS + str(key) + '  '
-print("Mode(s): " + modeS)
+else:
+  for key, value in modeDict.items():
+    if value == modeOccur:
+      modeS = modeS + str(key) + '  '
+  print("Mode(s): " + modeS)
