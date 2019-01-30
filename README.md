@@ -14,7 +14,7 @@ The script currently supports ',' as well as ':' and ' ' (space) as arguments
 `python3 orderList.py , `  <--- the comma is what is delimiting my list in this case. 1,2,3,4
 
 
-`python3 orderList.py : ` | 1:2:3:4
+`python3 orderList.py : `  <--- 1:2:3:4
 
 
-`python3 orderList.py ' ' ` | 1 2 3 4
+`python3 orderList.py ' ' `  <--- 1 2 3 4
