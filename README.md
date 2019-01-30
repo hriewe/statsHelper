@@ -2,6 +2,7 @@
 An elementary program to help save time on my stats homework.
 
 My implementation of common statistical algorithms implemented without the statistics module.
+
 Sorts the list, finds the mean, median, and mode as well as the variance and standard deviation.
 
 ## How to run
