@@ -46,7 +46,8 @@ for i in range (len(array)):
 total = 0
 for i in range(len(array)):
   total = total + array[i]
-print("\nMean: " + str(total/len(array)))
+mean = total/len(array)
+print("\nMean: " + str(mean))
 
 #Find the median of the list
 if len(array) % 2 == 1:
@@ -80,3 +81,16 @@ else:
     if value == modeOccur:
       modeS = modeS + str(key) + '  '
   print("Mode(s): " + modeS)
+
+#Find the variance of the list
+varList = []
+varSum = 0
+for i in range(len(array)):
+  varList.append(array[i] - mean)
+  varList[i] = varList[i] * varList[i]
+  varSum = varSum + varList[i]
+  variance = varSum / (len(array) - 1)
+print("Variance: " + str(variance))
+
+#Find the standard deviation
+print("Standard Deviation: " + str(variance ** 0.5))
