@@ -23,13 +23,13 @@ array = []
 #Split the list at the comma and add it to a python list
 if sys.argv[1] == ",":
   for num in numString.split(','):
-    array.append(int(num))
+    array.append(float(num))
 elif sys.argv[1] == " ":
   for num in numString.split(" "):
-    array.append(int(num))
+    array.append(float(num))
 elif sys.argv[1] == ":":
   for num in numString.split(":"):
-    array.append(int(num))
+    array.append(float(num))
 else:
   print("Could not split your string, please enter a list seperated by: ',' ':' or a space.")
   sys.exit()
