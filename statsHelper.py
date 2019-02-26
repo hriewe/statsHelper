@@ -17,7 +17,8 @@ def bubbleSort(unsorted):
             unsorted[i] = unsorted[i+1]
             unsorted[i+1] = temp
 
-home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distrobution", "Binomial Distrobution"],),]
+home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution"],),]
+poissonOptions = [inquirer.List('poisson', message="Please select an option: ", choices=["Single Poisson", "Range Poisson"],),]
 homeSelection = inquirer.prompt(home)
 
 if homeSelection['home'] == "List Evaluator":
@@ -103,22 +104,39 @@ if homeSelection['home'] == "List Evaluator":
   #Find the standard deviation
   print("Standard Deviation: " + str(variance ** 0.5))
 
-if homeSelection['home'] == "Poisson Distrobution":
+if homeSelection['home'] == "Poisson Distribution":
   os.system('clear')
-  lam = float(input("Lambda: "))
-  x = float(input("x: "))
-  e = 2.71828
+  poissonAnswer = inquirer.prompt(poissonOptions)
+  if poissonAnswer['poisson'] == "Single Poisson":
+    os.system('clear')
+    lam = float(input("Lambda: "))
+    x = float(input("x: "))
+    e = 2.71828
 
-  temp = lam ** x
-  temp2 = e ** -lam
-  temp3 = temp*temp2
-  num = 1
-  while x >= 1:
-    num = num * x
-    x = x - 1
-  poisson = temp3/num
-  print("Poisson: " + str(poisson))
+    temp = (lam ** x) * (e ** -lam)
+    num = 1
+    while x >= 1:
+      num = num * x
+      x = x - 1
+    poisson = temp/num
+    print("Poisson: " + str(poisson))
+  else:
+    os.system('clear')
+    lam = float(input("Lambda: "))
+    xmin = int(input("x min: "))
+    xmax = int(input("x max: "))
+    e = 2.71828
+    totalPoisson = 0
 
-if homeSelection['home'] == "Binomial Distrobution":
+    for i in range(xmin,xmax+1):
+      temp = (lam ** i) * (e ** -lam)
+      num = 1
+      while i >= 1:
+        num = num * i
+        i = i - 1
+      totalPoisson = totalPoisson + temp/num
+    print("Poisson: " + str(totalPoisson))
+
+if homeSelection['home'] == "Binomial Distribution":
   print("work in progress")
   sys.exit()
