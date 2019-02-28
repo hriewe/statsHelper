@@ -1,7 +1,7 @@
 #Hayden Riewe
 #github.com/hriewe
-#This script will order a string of numbers and then
-#calculate the mean, median, mode, variance, and stddev
+#This script gives the user multiple options for computing 
+#common statistical formulas
 
 #import needed modules
 import sys
@@ -17,6 +17,7 @@ def bubbleSort(unsorted):
             unsorted[i] = unsorted[i+1]
             unsorted[i+1] = temp
 
+#Compute the factorial of x
 def factorial(x):
   num = 1
   while x >= 1:
@@ -24,23 +25,26 @@ def factorial(x):
     x = x - 1
   return num
 
+#Compute poisson
 def poisson(lam, x):
   e = 2.71828
   temp = (lam ** x) * (e ** -lam)
   num = factorial(x)
   return temp/num
 
+#Compute binomial
 def binomial(n, p, x):
   nCx = factorial(n) / (factorial(x) * (factorial(n-x)))
   nCx = nCx * (p**x)
   return (nCx) * ((1 - p) ** (n-x))
 
+#Home screen
 home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution"],),]
 poissonOptions = [inquirer.List('poisson', message="Please select an option: ", choices=["Single Poisson", "Range Poisson"],),]
 binomialOptions = [inquirer.List('binomial', message="Please select an option: ", choices=["Single Binomial", "Range Binomial"],),]
-
 homeSelection = inquirer.prompt(home)
 
+#LIST
 if homeSelection['home'] == "List Evaluator":
   os.system('clear')
 
@@ -145,6 +149,7 @@ if homeSelection['home'] == "Poisson Distribution":
       totalPoisson = totalPoisson + poisson(lam, i)
     print("Poisson: " + str(totalPoisson))
 
+#BINOMIAL
 if homeSelection['home'] == "Binomial Distribution":
   os.system('clear')
   binomialAnswer = inquirer.prompt(binomialOptions)
