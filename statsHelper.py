@@ -30,8 +30,15 @@ def poisson(lam, x):
   num = factorial(x)
   return temp/num
 
+def binomial(n, p, x):
+  nCx = factorial(n) / (factorial(x) * (factorial(n-x)))
+  nCx = nCx * (p**x)
+  return (nCx) * ((1 - p) ** (n-x))
+
 home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution"],),]
 poissonOptions = [inquirer.List('poisson', message="Please select an option: ", choices=["Single Poisson", "Range Poisson"],),]
+binomialOptions = [inquirer.List('binomial', message="Please select an option: ", choices=["Single Binomial", "Range Binomial"],),]
+
 homeSelection = inquirer.prompt(home)
 
 if homeSelection['home'] == "List Evaluator":
@@ -139,5 +146,23 @@ if homeSelection['home'] == "Poisson Distribution":
     print("Poisson: " + str(totalPoisson))
 
 if homeSelection['home'] == "Binomial Distribution":
-  print("work in progress")
-  sys.exit()
+  os.system('clear')
+  binomialAnswer = inquirer.prompt(binomialOptions)
+  if binomialAnswer['binomial'] == "Single Binomial":
+    os.system('clear')
+    n = int(input("n: "))
+    p = float(input("p: "))
+    x = int(input("x: "))
+    if p >= 1:
+      p = p/100
+    print("Binomial: " + str(binomial(n, p, x)))
+  else:
+    os.system('clear')
+    n = int(input("n: "))
+    p = float(input("p: "))
+    xmin = int(input("x min: "))
+    xmax = int(input("x max: "))
+    totalBinomial = 0
+    for i in range(xmin, xmax+1):
+      totalBinomial = totalBinomial + binomial(n,p,i)
+    print("Binomial: " + str(totalBinomial))
