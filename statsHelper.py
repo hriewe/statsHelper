@@ -17,6 +17,19 @@ def bubbleSort(unsorted):
             unsorted[i] = unsorted[i+1]
             unsorted[i+1] = temp
 
+def factorial(x):
+  num = 1
+  while x >= 1:
+    num = num * x
+    x = x - 1
+  return num
+
+def poisson(lam, x):
+  e = 2.71828
+  temp = (lam ** x) * (e ** -lam)
+  num = factorial(x)
+  return temp/num
+
 home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution"],),]
 poissonOptions = [inquirer.List('poisson', message="Please select an option: ", choices=["Single Poisson", "Range Poisson"],),]
 homeSelection = inquirer.prompt(home)
@@ -104,6 +117,7 @@ if homeSelection['home'] == "List Evaluator":
   #Find the standard deviation
   print("Standard Deviation: " + str(variance ** 0.5))
 
+#POISSON
 if homeSelection['home'] == "Poisson Distribution":
   os.system('clear')
   poissonAnswer = inquirer.prompt(poissonOptions)
@@ -111,30 +125,17 @@ if homeSelection['home'] == "Poisson Distribution":
     os.system('clear')
     lam = float(input("Lambda: "))
     x = float(input("x: "))
-    e = 2.71828
-
-    temp = (lam ** x) * (e ** -lam)
-    num = 1
-    while x >= 1:
-      num = num * x
-      x = x - 1
-    poisson = temp/num
+    poisson = poisson(lam, x)
     print("Poisson: " + str(poisson))
   else:
     os.system('clear')
     lam = float(input("Lambda: "))
     xmin = int(input("x min: "))
     xmax = int(input("x max: "))
-    e = 2.71828
     totalPoisson = 0
 
     for i in range(xmin,xmax+1):
-      temp = (lam ** i) * (e ** -lam)
-      num = 1
-      while i >= 1:
-        num = num * i
-        i = i - 1
-      totalPoisson = totalPoisson + temp/num
+      totalPoisson = totalPoisson + poisson(lam, i)
     print("Poisson: " + str(totalPoisson))
 
 if homeSelection['home'] == "Binomial Distribution":
