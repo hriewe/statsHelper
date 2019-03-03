@@ -39,7 +39,7 @@ def binomial(n, p, x):
   return (nCx) * ((1 - p) ** (n-x))
 
 #Home screen
-home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution", "Z-Score"],),]
+home = [inquirer.List('home', message="Please select a function: ", choices=["List Evaluator", "Poisson Distribution", "Binomial Distribution", "Z-Score", "Inverse Z"],),]
 poissonOptions = [inquirer.List('poisson', message="Please select an option: ", choices=["Single Poisson", "Range Poisson"],),]
 binomialOptions = [inquirer.List('binomial', message="Please select an option: ", choices=["Single Binomial", "Range Binomial"],),]
 homeSelection = inquirer.prompt(home)
@@ -179,4 +179,11 @@ if homeSelection['home'] == "Z-Score":
   mean = float(input("Mean: "))
   stdev = float(input("Standard deviation: "))
   print("Z-Score: " + str((x-mean)/stdev))
+#INVERSE Z
+if homeSelection['home'] == "Inverse Z":
+  os.system('clear')
+  z = float(input("Z: "))
+  stdev = float(input("Standard Deviation: "))
+  mean = float(input("Mean: "))
+  print("X: " + str(z*stdev+mean))
 
